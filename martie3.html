@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MartiSage's Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87CEFA; /* Blue Background */
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 30px 0;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 12px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 25px 15px;
+    }
+    h2 { color: #4CAF50; }
+    ul { list-style-type: square; display: inline-block; text-align: left; }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    button:hover { background-color: #45a049; }
+
+    #notesDisplay {
+      min-height: 80px;
+      font-size: 16px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      margin-top: 10px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 15px 0;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Hello, I’m MartiSage</h1>
+    <p>Learning web development and ICT</p>
+    <img src="C:/Users/NANA PREMPEH/Pictures/Saved Pictures/AM.jpg" alt="Profile Picture">
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About Me -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a student learning web development. I enjoy creating websites, projects, and useful digital tools.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript (learning)</li>
+      <li>ICT knowledge</li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Click a button to see a project demo:</p>
+    <button onclick="showProject('project1')">Project 1: Calculator</button>
+    <button onclick="showProject('project2')">Project 2: Study Notes</button>
+
+    <!-- Calculator -->
+    <div id="project1" style="display:none; margin-top:15px;">
+      <h3>Simple Calculator</h3>
+      <input type="number" id="num1" placeholder="First number" style="width:80px;">
+      <input type="number" id="num2" placeholder="Second number" style="width:80px;">
+      <br><br>
+      <button onclick="calculate('+')">Add (+)</button>
+      <button onclick="calculate('-')">Subtract (-)</button>
+      <button onclick="calculate('*')">Multiply (*)</button>
+      <button onclick="calculate('/')">Divide (/)</button>
+      <p id="calcResult" style="margin-top:10px; font-weight:bold;"></p>
+    </div>
+
+    <!-- Study Notes -->
+    <div id="project2" style="display:none; margin-top:15px;">
+      <h3>Study Notes Viewer</h3>
+      <p>Click a subject to see notes:</p>
+      <button onclick="showNotes('math')">Math</button>
+      <button onclick="showNotes('chemistry')">Chemistry</button>
+      <button onclick="showNotes('ict')">ICT</button>
+
+      <div id="notesDisplay">
+        <p>Notes will appear here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="marthaowusua@08@icloud.com">marthaowusua@08@icloud.com</a></p>
+    <p>Phone: +233 257 240 872</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 MartiSage's Website</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function showProject(projectId) {
+      const projects = ['project1', 'project2'];
+      projects.forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+      document.getElementById(projectId).style.display = 'block';
+      const notes = document.getElementById('notesDisplay');
+      if (notes) notes.innerHTML = '<p>Notes will appear here.</p>';
+    }
+
+    function calculate(operator) {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      let result = '';
+      if (isNaN(n1) || isNaN(n2)) {
+        result = 'Please enter valid numbers';
+      } else {
+        switch(operator) {
+          case '+': result = n1 + n2; break;
+          case '-': result = n1 - n2; break;
+          case '*': result = n1 * n2; break;
+          case '/': result = n2 !== 0 ? n1 / n2 : 'Cannot divide by zero'; break;
+        }
+      }
+      document.getElementById('calcResult').innerText = "Result: " + result;
+    }
+
+    function showNotes(subject) {
+      let notes = '';
+      switch(subject) {
+        case 'math':
+          notes = '<h4>Math Notes</h4><p>Formulas, examples, and practice questions .</p>';
+          break;
+        case 'chemistry':
+          notes = '<h4>Chemistry Notes</h4><p>Acids, bases, salts, and simple reactions explained .</p>';
+          break;
+        case 'ict':
+          notes = '<h4>ICT Notes</h4><p>Computer systems, networks, HTML basics, and web development tips.</p>';
+          break;
+        default:
+          notes = '<p>No notes available.</p>';
+      }
+      document.getElementById('notesDisplay').innerHTML = notes;
+    }
+  </script>
+
+</body>
+</html>
